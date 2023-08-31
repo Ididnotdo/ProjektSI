@@ -24,3 +24,9 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Entity\Task:
             public: true
+    App\Entity\Category:
+        public: true
+    App\Form\Type\CategoryType:
+        public: true
+    App\Controller\CategoryController:
+        autowire: true
