@@ -1,17 +1,17 @@
 <?php
 /**
- * Task service interface.
+ * Note service interface.
  */
 
 namespace App\Service;
 
-use App\Entity\Task;
+use App\Entity\Note;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Interface TaskServiceInterface.
+ * Interface NoteServiceInterface.
  */
-interface TaskServiceInterface
+interface NoteServiceInterface
 {
     /**
      * Get paginated list.
@@ -25,13 +25,13 @@ interface TaskServiceInterface
     /**
      * Save entity.
      *
-     * @param Task $task Task entity
+     * @param Note $note Note entity
      */
-    public function save(Task $task): void;
+    public function save(Note $note): void;
     /**
      * Delete entity.
      *
-     * @param Task $task Task entity
+     * @param Note $note Note entity
      */
-    public function delete(Task $task): void;
+    public function delete(Note $note): void;
 }

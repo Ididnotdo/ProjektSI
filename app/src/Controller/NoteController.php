@@ -1,13 +1,13 @@
 <?php
 /**
- * Task controller.
+ * note controller.
  */
 
 namespace App\Controller;
 
-use App\Entity\Task;
-use App\Form\Type\TaskType;
-use App\Service\TaskServiceInterface;
+use App\Entity\Note;
+use App\Form\Type\NoteType;
+use App\Service\NoteServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,25 +16,25 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class TaskController.
+ * Class NoteController.
  */
-#[Route('/task')]
-class TaskController extends AbstractController
+#[Route('/note')]
+class NoteController extends AbstractController
 {
     /**
-     * Task service.
+     * note service.
      */
-    private TaskServiceInterface $taskService;
+    private NoteServiceInterface $noteService;
 
     /**
      * Constructor.
      *
-     * @param TaskServiceInterface $taskService Task service
+     * @param NoteServiceInterface $noteService note service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(TaskServiceInterface $taskService,  TranslatorInterface $translator)
+    public function __construct(NoteServiceInterface $noteService,  TranslatorInterface $translator)
     {
-        $this->taskService = $taskService;
+        $this->noteService = $noteService;
         $this->translator = $translator;
     }
 
@@ -46,32 +46,32 @@ class TaskController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'task_index', methods: 'GET')]
+    #[Route(name: 'note_index', methods: 'GET')]
     public function index(Request $request): Response
     {
-        $pagination = $this->taskService->getPaginatedList(
+        $pagination = $this->noteService->getPaginatedList(
             $request->query->getInt('page', 1)
         );
 
-        return $this->render('task/index.html.twig', ['pagination' => $pagination]);
+        return $this->render('note/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
      * Show action.
      *
-     * @param Task $task Task
+     * @param Note $note note
      *
      * @return Response HTTP response
      */
     #[Route(
         '/{id}',
-        name: 'task_show',
+        name: 'note_show',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
-    public function show(Task $task): Response
+    public function show(Note $note): Response
     {
-        return $this->render('task/show.html.twig', ['task' => $task]);
+        return $this->render('note/show.html.twig', ['note' => $note]);
     }
 
     /**
@@ -83,75 +83,75 @@ class TaskController extends AbstractController
      */
     #[Route(
         '/create',
-        name: 'task_create',
+        name: 'note_create',
         methods: 'GET|POST',
     )]
     public function create(Request $request): Response
     {
-        $task = new Task();
+        $note = new Note();
         $form = $this->createForm(
-            TaskType::class,
-            $task,
-            ['action' => $this->generateUrl('task_create')]
+            NoteType::class,
+            $note,
+            ['action' => $this->generateUrl('note_create')]
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->save($task);
+            $this->noteService->save($note);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.created_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('note_index');
         }
 
-        return $this->render('task/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('note/create.html.twig',  ['form' => $form->createView()]);
     }
 
     /**
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Task    $task    Task entity
+     * @param note    $note    note entity
      *
      * @return Response HTTP response
      */
     #[Route(
         '/{id}/edit',
-        name: 'task_edit',
+        name: 'note_edit',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|PUT'
     )]
-    public function edit(Request $request, Task $task): Response
+    public function edit(Request $request, Note $note): Response
     {
         $form = $this->createForm(
-            TaskType::class,
-            $task,
+            NoteType::class,
+            $note,
             [
                 'method' => 'PUT',
-                'action' => $this->generateUrl('task_edit', ['id' => $task->getId()]),
+                'action' => $this->generateUrl('note_edit', ['id' => $note->getId()]),
             ]
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->save($task);
+            $this->noteService->save($note);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('note_index');
         }
 
         return $this->render(
-            'task/edit.html.twig',
+            'note/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'task' => $task,
+                'note' => $note,
             ]
         );
     }
@@ -160,44 +160,44 @@ class TaskController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Task    $task    Task entity
+     * @param Note    $note    note entity
      *
      * @return Response HTTP response
      */
     #[Route(
         '/{id}/delete',
-        name: 'task_delete',
+        name: 'note_delete',
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|DELETE'
     )]
-    public function delete(Request $request, Task $task): Response
+    public function delete(Request $request, Note $note): Response
     {
         $form = $this->createForm(
             FormType::class,
-            $task,
+            $note,
             [
                 'method' => 'DELETE',
-                'action' => $this->generateUrl('task_delete', ['id' => $task->getId()]),
+                'action' => $this->generateUrl('note_delete', ['id' => $note->getId()]),
             ]
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->taskService->delete($task);
+            $this->noteService->delete($note);
 
             $this->addFlash(
                 'success',
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('note_index');
         }
 
         return $this->render(
-            'task/delete.html.twig',
+            'note/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'task' => $task,
+                'note' => $note,
             ]
         );
     }

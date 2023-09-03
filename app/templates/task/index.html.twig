@@ -24,13 +24,20 @@
             {% for task in pagination.items %}
                 <tr>
                     <td>{{ task.id }}</td>
-                    <td>{{ task.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ task.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ task.createdAt|format_date('long') }}</td>
+                    <td>{{ task.updatedAt|format_date('long') }}</td>
                     <td>{{ task.title }}</td>
                     <td>{{ task.category.title }}</td>
                     <td>
                         <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-secondary">
                             {{ 'action.show'|trans }}
+                        </a>
+                        <a href="{{ url('task_edit', {'id': task.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-primary">
+                            {{ 'action.edit'|trans }}
+                        </a>
+
+                        <a href="{{ url('task_delete', {'id': task.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-outline-danger">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>

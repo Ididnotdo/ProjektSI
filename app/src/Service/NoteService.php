@@ -1,26 +1,26 @@
 <?php
 /**
- * Task service.
+ * Note service.
  */
 
 namespace App\Service;
 
-use App\Entity\Task;
-use App\Repository\TaskRepository;
+use App\Entity\Note;
+use App\Repository\NoteRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\NonUniqueResultException;
 
 /**
- * Class TaskService.
+ * Class NoteService.
  */
-class TaskService implements TaskServiceInterface
+class NoteService implements NoteServiceInterface
 {
     /**
-     * Task repository.
+     * Note repository.
      */
-    private TaskRepository $taskRepository;
+    private NoteRepository $noteRepository;
 
     /**
      * Paginator.
@@ -30,12 +30,12 @@ class TaskService implements TaskServiceInterface
     /**
      * Constructor.
      *
-     * @param TaskRepository     $taskRepository Task repository
+     * @param NoteRepository     $noteRepository Note repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(TaskRepository $taskRepository, PaginatorInterface $paginator)
+    public function __construct(NoteRepository $noteRepository, PaginatorInterface $paginator)
     {
-        $this->taskRepository = $taskRepository;
+        $this->noteRepository = $noteRepository;
         $this->paginator = $paginator;
     }
 
@@ -49,29 +49,29 @@ class TaskService implements TaskServiceInterface
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->taskRepository->queryAll(),
+            $this->noteRepository->queryAll(),
             $page,
-            TaskRepository::PAGINATOR_ITEMS_PER_PAGE
+            NoteRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
     /**
      * Save entity.
      *
-     * @param Task $task Task entity
+     * @param Note $note Note entity
      */
-    public function save(Task $task): void
+    public function save(Note $note): void
     {
-        $this->taskRepository->save($task);
+        $this->noteRepository->save($note);
     }
 
     /**
      * Delete entity.
      *
-     * @param Task $task Task entity
+     * @param Note $note Note entity
      */
-    public function delete(Task $task): void
+    public function delete(Note $note): void
     {
-        $this->taskRepository->delete($task);
+        $this->noteRepository->delete($note);
     }
 
 }
