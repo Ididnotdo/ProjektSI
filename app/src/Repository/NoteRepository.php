@@ -59,26 +59,20 @@ class NoteRepository extends ServiceEntityRepository
      *
      * @param Note $note Note entity
      */
-    public function save(Note $entity, bool $flush = false): void
+    public function save(Note $note): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->persist($note);
+        $this->_em->flush();
     }
     /**
      * Delete entity.
      *
      * @param Note $note Note entity
      */
-    public function remove(Note $entity, bool $flush = false): void
+    public function delete(Note $note): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($note);
+        $this->_em->flush();
     }
     /**
      * Get or create new query builder.
@@ -89,7 +83,7 @@ class NoteRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('task');
+        return $queryBuilder ?? $this->createQueryBuilder('note');
     }
 
 //    /**

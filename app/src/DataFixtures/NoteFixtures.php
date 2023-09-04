@@ -38,5 +38,6 @@ class NoteFixtures extends AbstractBaseFixtures
 
             return $note;
         });
+        $this->manager->flush();
     }
 }

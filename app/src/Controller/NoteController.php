@@ -173,7 +173,7 @@ class NoteController extends AbstractController
     public function delete(Request $request, Note $note): Response
     {
         $form = $this->createForm(
-            FormType::class,
+            NoteType::class,
             $note,
             [
                 'method' => 'DELETE',

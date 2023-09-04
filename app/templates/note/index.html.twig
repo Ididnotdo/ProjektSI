@@ -26,8 +26,8 @@
                     <td>{{ note.id }}</td>
                     <td>{{ note.createdAt|format_date('long') }}</td>
                     <td>{{ note.updatedAt|format_date('long') }}</td>
-                    <td>{{ note.title }}</td>
-                    <td>{{ note.content }}</td>
+                    <td>{{ note.title [:10]}}...</td>
+                    <td>{{ note.content [:20]}}...</td>
                     <td>
                         <a href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-secondary">
                             {{ 'action.show'|trans }}

@@ -13,6 +13,7 @@ use App\Repository\TaskRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\NonUniqueResultException;
 
+
 /**
  * Class CategoryService.
  */
@@ -29,17 +30,18 @@ class CategoryService implements CategoryServiceInterface
     /**
      * TaskRepository
      */
-    private $taskRepository;
+    private TaskRepository $taskRepository;
     /**
      * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator)
+    public function __construct(CategoryRepository $categoryRepository, TaskRepository $taskRepository, PaginatorInterface $paginator)
     {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
+        $this->taskRepository = $taskRepository;
     }
 
     /**

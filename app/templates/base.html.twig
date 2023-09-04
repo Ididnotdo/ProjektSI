@@ -12,6 +12,27 @@
     {% endblock %}
 </head>
 <body>
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li class="nav-item">
+            <a href="{{ url('task_index') }}" title="{{ 'tasks'|trans }}" class="nav-link link-dark">
+                Tasks
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url('category_index') }}" title="{{ 'categories'|trans }}" class="nav-link link-dark">
+                Categories
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url('note_index')}}" title="{{ 'notes'|trans }}" class="nav-link link-dark">
+                Notes
+            </a>
+        </li>
+    </ul>
+</header>
+<nav class="navbar navbar-light bg-light">
+</nav>
 <main role="main" class="container-fluid">
     <div class="container-fluid">
         {% include 'default/_flash_messages.html.twig' %}

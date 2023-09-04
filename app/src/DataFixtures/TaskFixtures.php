@@ -29,7 +29,7 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             return;
         }
 
-        $this->createMany(100, 'tasks', function (int $i) {
+        $this->createMany(40, 'tasks', function (int $i) {
             $task = new Task();
             $task->setTitle($this->faker->sentence);
             $task->setCreatedAt(

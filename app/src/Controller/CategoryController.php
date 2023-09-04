@@ -137,7 +137,7 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index');
         }
-        $form = $this->createForm(FormType::class, $category, [
+        $form = $this->createForm(CategoryType::class, $category, [
             'method' => 'DELETE',
             'action' => $this->generateUrl('category_delete', ['id' => $category->getId()]),
         ]);
