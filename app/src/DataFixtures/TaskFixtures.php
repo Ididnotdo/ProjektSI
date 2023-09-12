@@ -42,6 +42,7 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
+            $task->setDueDate($this->faker->dateTimeBetween('+1 days', '+100 days'));
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);

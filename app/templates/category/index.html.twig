@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.category_list'|trans }}</h1>
+    <a href="{{ url('category_create')}}" title="{{ 'action.create'|trans }}" class="btn btn-outline-success">
+        {{ 'action.create'|trans }}
+    </a>
     {% if pagination is defined and pagination.items|length %}
 
         <table class="table table-striped align-middle">
@@ -28,9 +31,9 @@
                     <td>{{ category.updatedAt|format_date('long') }}</td>
 
                     <td>
-{#                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }} class="btn btn-outline-secondary"">#}
-{#                            {{ 'action.show'|trans }}#}
-{#                        </a>#}
+                        <a href="{{ url('category_show', {'id': category.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-secondary">
+                            {{ 'action.show'|trans }}
+                        </a>
                         <a href="{{ url('category_edit', {'id': category.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-primary">
                             {{ 'action.edit'|trans }}
                         </a>

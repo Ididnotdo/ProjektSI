@@ -7,6 +7,7 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -52,10 +53,22 @@ class Task
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-
+    /**
+     * Category.
+     *
+     * @var Category|null
+     */
     #[ORM\ManyToOne(fetch: "EXTRA_LAZY")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    /**
+     * Due date.
+     *
+     * @var \DateTimeInterface|null
+     */
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dueDate = null;
 
     /**
      * Getter for Id.
@@ -139,5 +152,28 @@ class Task
     public function setCategory(?Category $category): void
     {
         $this->category = $category;
+    }
+
+    /**
+     * Getter for due date.
+     *
+     * @return \DateTimeInterface|null
+     */
+    public function getDueDate(): ?\DateTimeInterface
+    {
+        return $this->dueDate;
+    }
+
+    /**
+     * Setter for due date.
+     *
+     * @param \DateTimeInterface|null $dueDate
+     * @return $this
+     */
+    public function setDueDate(?\DateTimeInterface $dueDate): self
+    {
+        $this->dueDate = $dueDate;
+
+        return $this;
     }
 }
