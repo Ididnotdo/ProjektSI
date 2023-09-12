@@ -64,6 +64,14 @@ class Note
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
     /**
+     * Category.
+     *
+     * @var Category|null
+     */
+    #[ORM\ManyToOne(fetch: "EXTRA_LAZY")]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+    /**
      * Getter for Id.
      *
      * @return int|null Id
@@ -146,5 +154,23 @@ class Note
     public function setContent(?string $content): void
     {
         $this->content = $content;
+    }
+    /**
+     * Getter for category.
+     *
+     * @return Category|null
+     */
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category
+     */
+    public function setCategory(?Category $category): void
+    {
+        $this->category = $category;
     }
 }

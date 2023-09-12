@@ -6,10 +6,11 @@
 {% endblock %}
 
 {% block body %}
-    <h1 >{{ 'title.task_list'|trans }}</h1>
-    <a href="{{ url('task_create')}}" title="{{ 'action.create'|trans }}" class="btn btn-outline-success">
+    <h1>{{ 'title.task_list'|trans }}</h1>
+    <a href="{{ url('task_create')}}" title="{{ 'action.create'|trans }}" class="btn btn-success">
     {{ 'action.create'|trans }}
     </a>
+
     {% if pagination is defined and pagination.items|length %}
 
         <table class="table table-striped align-middle table-hover">

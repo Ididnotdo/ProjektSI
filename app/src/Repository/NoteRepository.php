@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Note;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\NoResultException;
@@ -51,8 +52,31 @@ class NoteRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial note.{id, createdAt, updatedAt, title, content}')
+            ->select('partial note.{id, createdAt, updatedAt, title, content}',
+            'partial category.{id, title}'
+            )
+            ->join('note.category', 'category')
             ->orderBy('note.updatedAt', 'DESC');
+    }
+    /**
+     * Count notes by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of notes in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('note.id'))
+            ->where('note.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
     /**
      * Save entity.

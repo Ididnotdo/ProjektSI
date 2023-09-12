@@ -173,7 +173,7 @@ class TaskController extends AbstractController
     public function delete(Request $request, Task $task): Response
     {
         $form = $this->createForm(
-            FormType::class,
+            TaskType::class,
             $task,
             [
                 'method' => 'DELETE',

@@ -34,7 +34,7 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $taskService Task service
+     * @param CategoryServiceInterface $categoryService Category service
      * @param TranslatorInterface      $translator  Translator
      */
     public function __construct(CategoryServiceInterface $categoryService, TranslatorInterface $translator)
@@ -106,7 +106,7 @@ class CategoryController extends AbstractController
                 $this->translator->trans('Category edited successfully!')
             );
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('app_logout');
         }
 
         return $this->render(
@@ -137,10 +137,13 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index');
         }
-        $form = $this->createForm(CategoryType::class, $category, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('category_delete', ['id' => $category->getId()]),
-        ]);
+        $form = $this->createForm(
+            CategoryType::class,
+            $category,
+            [
+                'method' => 'DELETE',
+                'action' => $this->generateUrl('category_delete', ['id' => $category->getId()]),
+            ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

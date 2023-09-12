@@ -5,13 +5,14 @@
 namespace App\DataFixtures;
 
 use App\Entity\Note;
+use App\Entity\Category;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
  * Class NoteFixtures.
  */
-class NoteFixtures extends AbstractBaseFixtures
+class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
@@ -35,9 +36,23 @@ class NoteFixtures extends AbstractBaseFixtures
                 )
             );
             $note->setContent($this->faker->realText);
-
+            /** @var Category $category */
+            $category = $this->getRandomReference('categories');
+            $note->setCategory($category);
             return $note;
         });
         $this->manager->flush();
+    }
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return string[] of dependencies
+     *
+     * @psalm-return array{0: CategoryFixtures::class}
+     */
+    public function getDependencies(): array
+    {
+        return [CategoryFixtures::class];
     }
 }
