@@ -47,11 +47,9 @@ class ChangePasswordType extends AbstractType
                 'required' => true,
                 'first_options' => ['label' => 'New Password'],
                 'second_options' => ['label' => 'Repeat Password'],
-                'attr' => ['autocomplete' => 'off']
+                'attr' => ['autocomplete' => 'off'],
             ]);
-
     }
-
 
     /**
      * Configures the options for this type.

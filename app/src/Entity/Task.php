@@ -6,19 +6,19 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+/**
+ * Class Task.
+ */
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
 #[ORM\Table(name: 'tasks')]
 class Task
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,45 +27,35 @@ class Task
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     /**
      * Category.
-     *
-     * @var Category|null
      */
-    #[ORM\ManyToOne(fetch: "EXTRA_LAZY")]
+    #[ORM\ManyToOne(fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
     /**
      * Due date.
-     *
-     * @var \DateTimeInterface|null
      */
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dueDate = null;
@@ -79,42 +69,47 @@ class Task
     {
         return $this->id;
     }
+
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
+
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable|null $createdAt Created at
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
+
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
+
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @param \DateTimeImmutable|null $updatedAt Updated at
      */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
+
     /**
      * Getter for title.
      *
@@ -124,6 +119,7 @@ class Task
     {
         return $this->title;
     }
+
     /**
      * Setter for title.
      *
@@ -136,8 +132,6 @@ class Task
 
     /**
      * Getter for category.
-     *
-     * @return Category|null
      */
     public function getCategory(): ?Category
     {
@@ -146,8 +140,6 @@ class Task
 
     /**
      * Setter for category.
-     *
-     * @param Category|null $category
      */
     public function setCategory(?Category $category): void
     {
@@ -156,8 +148,6 @@ class Task
 
     /**
      * Getter for due date.
-     *
-     * @return \DateTimeInterface|null
      */
     public function getDueDate(): ?\DateTimeInterface
     {
@@ -167,7 +157,6 @@ class Task
     /**
      * Setter for due date.
      *
-     * @param \DateTimeInterface|null $dueDate
      * @return $this
      */
     public function setDueDate(?\DateTimeInterface $dueDate): self

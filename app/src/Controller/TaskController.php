@@ -9,7 +9,6 @@ use App\Entity\Task;
 use App\Form\Type\TaskType;
 use App\Service\TaskServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,12 +31,11 @@ class TaskController extends AbstractController
      * @param TaskServiceInterface $taskService Task service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(TaskServiceInterface $taskService,  TranslatorInterface $translator)
+    public function __construct(TaskServiceInterface $taskService, TranslatorInterface $translator)
     {
         $this->taskService = $taskService;
         $this->translator = $translator;
     }
-
 
     /**
      * Index action.
@@ -107,7 +105,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_index');
         }
 
-        return $this->render('task/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**

@@ -6,7 +6,7 @@
 
 {% block body %}
     <h1>{{ 'title.category_list'|trans }}</h1>
-    <a href="{{ url('category_create')}}" title="{{ 'action.create'|trans }}" class="btn btn-outline-success">
+    <a href="{{ url('category_create')}}" title="{{ 'action.create'|trans }}" class="btn btn-success">
         {{ 'action.create'|trans }}
     </a>
     {% if pagination is defined and pagination.items|length %}

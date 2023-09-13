@@ -39,7 +39,8 @@ class NoteType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 64],
-            ])
+            ]
+        )
             ->add(
                 'category',
                 EntityType::class,
@@ -51,14 +52,14 @@ class NoteType extends AbstractType
                     'label' => 'label.category',
                     'placeholder' => 'label.none',
                     'required' => true,
-                ])
+                ]
+            )
             ->add('content', TextareaType::class, [
                 'label' => 'label.content',
                 'required' => false,
                 'attr' => ['rows' => 5],
             ]);
     }
-
 
     /**
      * Configures the options for this type.

@@ -7,12 +7,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Knp\Component\Pager\Pagination\PaginationInterface;
-use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-
 
 /**
  * Class UserService.
@@ -20,6 +15,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 class UserService
 {
     private UserRepository $userRepository;
+
     /**
      * Constructor.
      *
@@ -29,6 +25,7 @@ class UserService
     {
         $this->userRepository = $userRepository;
     }
+
     /**
      * Save entity.
      *
@@ -43,6 +40,7 @@ class UserService
         `*/
         $this->userRepository->save($user, true);
     }
+
     /**
      * Save entity.
      *

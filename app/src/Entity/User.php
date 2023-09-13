@@ -2,6 +2,7 @@
 /**
  * User entity.
  */
+
 namespace App\Entity;
 
 use App\Entity\Enum\UserRole;
@@ -21,8 +22,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Primary key.
-     *
-     * * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,8 +29,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
@@ -47,12 +44,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Password.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
     private ?string $password;
+
     /**
      * Getter for id.
      *

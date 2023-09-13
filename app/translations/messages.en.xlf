@@ -262,6 +262,14 @@
           <source>label.dueDate</source>
           <target>Deadline</target>
       </trans-unit>
+      <trans-unit id="You are logged in as">
+          <source>You are logged in as</source>
+          <target>You are logged in as </target>
+      </trans-unit>
+      <trans-unit id="Logout">
+          <source>Logout</source>
+          <target>Logout</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
