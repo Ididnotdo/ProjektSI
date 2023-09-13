@@ -205,7 +205,7 @@
       </trans-unit>
       <trans-unit id="action_login">
           <source>action_login</source>
-          <target>Wyloguj</target>
+          <target>Zaloguj</target>
       </trans-unit>
       <trans-unit id="title.password_edit">
           <source>title.password_edit</source>
@@ -222,6 +222,18 @@
       <trans-unit id="title.email_edit">
           <source>title.email_edit</source>
           <target>Zmień email</target>
+      </trans-unit>
+      <trans-unit id="label.category">
+          <source>label.category</source>
+          <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="label.none">
+          <source>label.none</source>
+          <target>Wybierz</target>
+      </trans-unit>
+      <trans-unit id="label.dueDate">
+          <source>label.dueDate</source>
+          <target>Deadline</target>
       </trans-unit>
     </body>
   </file>

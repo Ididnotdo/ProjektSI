@@ -89,54 +89,6 @@ class UserController extends AbstractController
 
         return $this->render('user/change_password.html.twig', ['user' => $user, 'error' => $error]);
     }
-    /**
-     * Change email.
-     * @param AuthenticationUtils $authenticationUtils
-     * @param UserInterface $user
-     * @return Response
-     */
-    #[Route(path: '/change_email', name: 'change_email')]
-    public function changeEmail(AuthenticationUtils $authenticationUtils, User $user,Request $request): Response
-    {
-        $form = $this->createForm(
-            ChangeEmailType::class,
-            $user,
-            [
-                'method' => 'PUT',
-                'action' => $this->generateUrl('change_email', ['id' => $user->getId()]),
-            ]
-        );
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->userService->save($user);
-
-            $this->addFlash(
-                'success',
-                $this->translator->trans('email.changed_successfully')
-            );
-
-            return $this->redirectToRoute('task_index');
-        }
-
-        return $this->render(
-            'user/change_email.html.twig',
-            [
-                'form' => $form->createView(),
-                'user' => $user,
-            ]
-        );
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('user/change_email.html.twig', ['user' => $user, 'error' => $error]);
-    }
 
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void

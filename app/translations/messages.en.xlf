@@ -250,6 +250,18 @@
           <source>title.email_edit</source>
           <target>Edit email</target>
       </trans-unit>
+      <trans-unit id="label.category">
+          <source>label.category</source>
+          <target>Category</target>
+      </trans-unit>
+      <trans-unit id="label.none">
+          <source>label.none</source>
+          <target>Choose</target>
+      </trans-unit>
+      <trans-unit id="label.dueDate">
+          <source>label.dueDate</source>
+          <target>Deadline</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

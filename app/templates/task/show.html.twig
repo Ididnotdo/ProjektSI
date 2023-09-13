@@ -17,6 +17,10 @@
             <dd>{{ task.updatedAt|date('Y/m/d') }}</dd>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  task.title }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  task.category.title }}</dd>
+            <dt>{{ 'label.dueDate'|trans }}</dt>
+            <dd>{{  task.dueDate|date('Y/m/d') }}</dd>
 
         </dl>
         <p>
