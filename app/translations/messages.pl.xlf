@@ -255,6 +255,13 @@
           <source>Please sign in</source>
           <target>Zaloguj się</target>
       </trans-unit>
+      <trans-unit id="label.New Password">
+          <source>label.New Password</source>
+          <target>Nowe hasło</target>
+      </trans-unit><trans-unit id="label.Repeat Password">
+          <source>label.Repeat Password</source>
+          <target>Powtórz hasło</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

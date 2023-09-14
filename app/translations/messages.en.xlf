@@ -282,6 +282,13 @@
           <source>Please sign in</source>
           <target>Please sign in</target>
       </trans-unit>
+      <trans-unit id="label.New Password">
+          <source>label.New Password</source>
+          <target>New Password</target>
+      </trans-unit><trans-unit id="label.Repeat Password">
+          <source>label.Repeat Password</source>
+          <target>Repeat Password</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

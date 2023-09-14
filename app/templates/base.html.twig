@@ -36,10 +36,6 @@
             <a href="{{ url('change_password') }}" class="btn btn-outline-warning nav-item">{{ 'action_change_password'|trans }}</a>
             <a href="{{ url('app_logout') }}" class="btn btn-outline-info nav-item">{{ 'action_logout'|trans }}</a>
         </div>
-    {% else %}
-        <div>
-            <a href="{{ url('app_login') }}" class="btn btn-info">{{ 'action_login'|trans }}</a>
-        </div>
     {% endif %}
 </header>
 <main role="main" class="container-fluid">
