@@ -33,26 +33,17 @@ class UserService
      */
     public function save(User $user): void
     {
-        /**if (null == $category->getId()) {
-        $category->setCreatedAt(new \DateTimeImmutable());
-        }
-        $category->setUpdatedAt(new \DateTimeImmutable());
-        `*/
         $this->userRepository->save($user, true);
     }
 
     /**
-     * Save entity.
+     * Update password.
      *
-     * @param User $user User entity
+     * @param PasswordAuthenticatedUserInterface $user     User entity
+     * @param string                             $password Password
      */
     public function updatePassword(PasswordAuthenticatedUserInterface $user, string $password): void
     {
-        /**if (null == $category->getId()) {
-        $category->setCreatedAt(new \DateTimeImmutable());
-        }
-        $category->setUpdatedAt(new \DateTimeImmutable());
-        `*/
         $this->userRepository->upgradePassword($user, $password);
     }
 }

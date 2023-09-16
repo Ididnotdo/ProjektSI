@@ -132,6 +132,8 @@ class Category
 
     /**
      * Get slug.
+     *
+     * @return string Slug
      */
     public function getSlug(): ?string
     {
@@ -140,6 +142,8 @@ class Category
 
     /**
      * Set slug.
+     *
+     * @param string $slug Slug
      *
      * @return $this
      */

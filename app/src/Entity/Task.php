@@ -132,6 +132,8 @@ class Task
 
     /**
      * Getter for category.
+     *
+     * @return string Category
      */
     public function getCategory(): ?Category
     {
@@ -140,6 +142,8 @@ class Task
 
     /**
      * Setter for category.
+     *
+     * @param Category|null $category Category
      */
     public function setCategory(?Category $category): void
     {
@@ -148,6 +152,8 @@ class Task
 
     /**
      * Getter for due date.
+     *
+     * @return \DateTimeInterface dueDate
      */
     public function getDueDate(): ?\DateTimeInterface
     {
@@ -156,6 +162,8 @@ class Task
 
     /**
      * Setter for due date.
+     *
+     * @param \DateTimeInterface $dueDate Due Date
      *
      * @return $this
      */

@@ -24,6 +24,10 @@ class NoteController extends AbstractController
      * note service.
      */
     private NoteServiceInterface $noteService;
+    /**
+     * Translator.
+     */
+    private TranslatorInterface $translator;
 
     /**
      * Constructor.

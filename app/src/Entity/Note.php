@@ -90,6 +90,8 @@ class Note
      * Setter for created at.
      *
      * @param \DateTimeImmutable|null $createdAt Created at
+     *
+     * @return $this
      */
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {

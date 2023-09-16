@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,6 +25,10 @@ class UserController extends AbstractController
      * User service.
      */
     private UserService $userService;
+    /**
+     * Translator Interface.
+     */
+    private TranslatorInterface $translator;
 
     /**
      * Constructor.
@@ -41,9 +44,12 @@ class UserController extends AbstractController
 
     /**
      * Change password.
-     * @param AuthenticationUtils $authenticationUtils
-     * @param UserInterface $user
-     * @return Response
+     *
+     * @param Request                     $request            request
+     * @param UserInterface               $user               User Interface
+     * @param UserPasswordHasherInterface $userPasswordHasher Password Hasher
+     *
+     * @return Response Response
      */
     #[Route(path: 'change_password', name: 'change_password')]
     public function changePassword(Request $request, UserInterface $user, UserPasswordHasherInterface $userPasswordHasher): Response
@@ -81,11 +87,6 @@ class UserController extends AbstractController
                 'user' => $user,
             ]
         );
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
-        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
         return $this->render('user/change_password.html.twig', ['user' => $user, 'error' => $error]);

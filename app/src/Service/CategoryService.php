@@ -6,6 +6,7 @@
 namespace App\Service;
 
 use App\Entity\Category;
+use App\Entity\Task;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -40,6 +41,8 @@ class CategoryService implements CategoryServiceInterface
      * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
+     * @param TaskRepository     $taskRepository     Task Repository
+     * @param NoteRepository     $noteRepository     Note repository
      * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(CategoryRepository $categoryRepository, TaskRepository $taskRepository, NoteRepository $noteRepository, PaginatorInterface $paginator)
