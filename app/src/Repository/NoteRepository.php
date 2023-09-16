@@ -1,4 +1,7 @@
 <?php
+/**
+ * Note repository.
+ */
 
 namespace App\Repository;
 
@@ -18,6 +21,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Note|null findOneBy(array $criteria, array $orderBy = null)
  * @method Note[]    findAll()
  * @method Note[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
  * * @extends ServiceEntityRepository<Note>
  *
  * @psalm-suppress LessSpecificImplementedReturnType
@@ -34,6 +38,7 @@ class NoteRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
     /**
      * Constructor.
      *
@@ -52,12 +57,14 @@ class NoteRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial note.{id, createdAt, updatedAt, title, content}',
-            'partial category.{id, title}'
+            ->select(
+                'partial note.{id, createdAt, updatedAt, title, content}',
+                'partial category.{id, title}'
             )
             ->join('note.category', 'category')
             ->orderBy('note.updatedAt', 'DESC');
     }
+
     /**
      * Count notes by category.
      *
@@ -78,6 +85,7 @@ class NoteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
     /**
      * Save entity.
      *
@@ -88,6 +96,7 @@ class NoteRepository extends ServiceEntityRepository
         $this->_em->persist($note);
         $this->_em->flush();
     }
+
     /**
      * Delete entity.
      *
@@ -98,6 +107,7 @@ class NoteRepository extends ServiceEntityRepository
         $this->_em->remove($note);
         $this->_em->flush();
     }
+
     /**
      * Get or create new query builder.
      *
@@ -109,29 +119,28 @@ class NoteRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('note');
     }
+    //    /**
+    //     * @return note[] Returns an array of note objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('n')
+    //            ->andWhere('n.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('n.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    /**
-//     * @return note[] Returns an array of note objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('n.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?note
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?note
+    //    {
+    //        return $this->createQueryBuilder('n')
+    //            ->andWhere('n.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

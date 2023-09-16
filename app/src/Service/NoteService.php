@@ -9,8 +9,6 @@ use App\Entity\Note;
 use App\Repository\NoteRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Class NoteService.
@@ -54,6 +52,7 @@ class NoteService implements NoteServiceInterface
             NoteRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
     /**
      * Save entity.
      *
@@ -73,5 +72,4 @@ class NoteService implements NoteServiceInterface
     {
         $this->noteRepository->delete($note);
     }
-
 }

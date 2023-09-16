@@ -9,8 +9,6 @@ use App\Entity\Task;
 use App\Repository\TaskRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Class TaskService.
@@ -54,6 +52,7 @@ class TaskService implements TaskServiceInterface
             TaskRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
     /**
      * Save entity.
      *
@@ -73,5 +72,4 @@ class TaskService implements TaskServiceInterface
     {
         $this->taskRepository->delete($task);
     }
-
 }

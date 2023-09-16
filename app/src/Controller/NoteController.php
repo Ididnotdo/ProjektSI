@@ -9,7 +9,6 @@ use App\Entity\Note;
 use App\Form\Type\NoteType;
 use App\Service\NoteServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,12 +31,11 @@ class NoteController extends AbstractController
      * @param NoteServiceInterface $noteService note service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(NoteServiceInterface $noteService,  TranslatorInterface $translator)
+    public function __construct(NoteServiceInterface $noteService, TranslatorInterface $translator)
     {
         $this->noteService = $noteService;
         $this->translator = $translator;
     }
-
 
     /**
      * Index action.
@@ -107,7 +105,7 @@ class NoteController extends AbstractController
             return $this->redirectToRoute('note_index');
         }
 
-        return $this->render('note/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('note/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**

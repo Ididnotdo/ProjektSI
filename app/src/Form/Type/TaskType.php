@@ -39,7 +39,8 @@ class TaskType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -52,14 +53,15 @@ class TaskType extends AbstractType
                 'placeholder' => 'label.none',
                 'required' => true,
             ]
-            );
+        );
         $builder->add(
             'dueDate',
             DateType::class,
             [
                 'label' => 'label.dueDate',
                 'required' => false,
-            ]);
+            ]
+        );
     }
 
     /**

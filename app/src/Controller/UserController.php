@@ -1,17 +1,17 @@
 <?php
+/**
+ * User controller.
+ */
 
 namespace App\Controller;
 
 use App\Form\Type\ChangePasswordType;
-use App\Form\Type\ChangeEmailType;
 use App\Entity\User;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -30,8 +30,8 @@ class UserController extends AbstractController
     /**
      * Constructor.
      *
-     * @param UserService $userService User service
-     * @param TranslatorInterface      $translator  Translator
+     * @param UserService         $userService User service
+     * @param TranslatorInterface $translator  Translator
      */
     public function __construct(UserService $userService, TranslatorInterface $translator)
     {
@@ -48,8 +48,9 @@ class UserController extends AbstractController
     #[Route(path: 'change_password', name: 'change_password')]
     public function changePassword(Request $request, UserInterface $user, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        if (! $user instanceof User)
+        if (!$user instanceof User) {
             return $this->redirectToRoute('task_index');
+        }
 
         $form = $this->createForm(
             ChangePasswordType::class,
@@ -90,6 +91,9 @@ class UserController extends AbstractController
         return $this->render('user/change_password.html.twig', ['user' => $user, 'error' => $error]);
     }
 
+    /**
+     * Log out.
+     */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

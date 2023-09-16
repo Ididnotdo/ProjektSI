@@ -262,6 +262,37 @@
           <source>label.dueDate</source>
           <target>Deadline</target>
       </trans-unit>
+      <trans-unit id="You are logged in as">
+          <source>You are logged in as</source>
+          <target>You are logged in as </target>
+      </trans-unit>
+      <trans-unit id="Logout">
+          <source>Logout</source>
+          <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="Sign in">
+          <source>Sign in</source>
+          <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="Password">
+          <source>Password</source>
+          <target>Password</target>
+      </trans-unit>
+      <trans-unit id="Please sign in">
+          <source>Please sign in</source>
+          <target>Please sign in</target>
+      </trans-unit>
+      <trans-unit id="label.New Password">
+          <source>label.New Password</source>
+          <target>New Password</target>
+      </trans-unit><trans-unit id="label.Repeat Password">
+          <source>label.Repeat Password</source>
+          <target>Repeat Password</target>
+      </trans-unit>
+      <trans-unit id="The password fields must match.">
+          <source>The password fields must match.</source>
+          <target>The password fields must match.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

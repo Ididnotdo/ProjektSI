@@ -14,7 +14,6 @@ use App\Repository\NoteRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\NonUniqueResultException;
 
-
 /**
  * Class CategoryService.
  */
@@ -29,20 +28,21 @@ class CategoryService implements CategoryServiceInterface
      */
     private PaginatorInterface $paginator;
     /**
-     * TaskRepository
+     * TaskRepository.
      */
     private TaskRepository $taskRepository;
     /**
-     * NoteRepository
+     * NoteRepository.
      */
     private NoteRepository $noteRepository;
+
     /**
      * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param PaginatorInterface $paginator          Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, TaskRepository $taskRepository,NoteRepository $noteRepository, PaginatorInterface $paginator)
+    public function __construct(CategoryRepository $categoryRepository, TaskRepository $taskRepository, NoteRepository $noteRepository, PaginatorInterface $paginator)
     {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
@@ -64,6 +64,7 @@ class CategoryService implements CategoryServiceInterface
          `*/
         $this->categoryRepository->save($category);
     }
+
     /**
      * Delete entity.
      *
